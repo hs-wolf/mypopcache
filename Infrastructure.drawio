@@ -1,9 +1,15 @@
-<mxfile host="app.diagrams.net" modified="2024-04-01T23:22:06.032Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:124.0) Gecko/20100101 Firefox/124.0" version="24.2.1" etag="xbyYUct6aYM0SnmhqaTo" type="github">
+<mxfile host="app.diagrams.net" modified="2024-04-01T23:24:53.762Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:124.0) Gecko/20100101 Firefox/124.0" etag="EUlznBAc7PV89738d6UI" version="24.2.1" type="github">
   <diagram name="Página-1" id="OVmor5jS-R9bCVFs5QnG">
-    <mxGraphModel>
+    <mxGraphModel dx="1430" dy="794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
+        <mxCell id="7so2eVJ9QVQmJhT1bDKu-1" value="Vue3 App" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="360" y="320" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="7so2eVJ9QVQmJhT1bDKu-2" value="ASP.NET API" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="360" y="400" width="120" height="40" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
