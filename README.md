@@ -15,7 +15,7 @@ Usually, people that follow pop culture, have dozens or even hundreds of media t
 - Import/Export your popcache to a csv file, for personal backups;
 - Check the popcache of other people.
 
-### Infrastructure
+### [Infrastructure](https://github.com/hs-wolf/mypopcache/blob/main/Infrastructure.drawio)
 - Auth/Database(PostgreSQL)/Storage: Supabase
 - Backend/Server: ASP.NET Core
   - Hosting: Google Cloud Compute Engine (Share VM for other projects)
