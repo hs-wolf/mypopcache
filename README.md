@@ -1,6 +1,6 @@
 ## My Pop Cache
 
-Url/Shorthand: mypopcache
+*Url/Shorthand: mypopcache*
 
 An app to help you keep track of ongoing medias, like movies, series and books.
 
@@ -22,10 +22,10 @@ Usually, people that follow pop culture, have dozens or even hundreds of media t
   - Hosting: GCP Compute Engine
 
 ### Tasks Management
-Trello
+[Trello](https://trello.com/b/Qk2EWllF/my-pop-cache)
 
 ### Versioning
-Github
+[Github](https://github.com/hs-wolf/mypopcache)
 
 ### License
-CC BY-NC-SA 4.0
+[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)
