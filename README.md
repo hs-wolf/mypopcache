@@ -18,9 +18,9 @@ Usually, people that follow pop culture, have dozens or even hundreds of media t
 ### [Infrastructure](https://github.com/hs-wolf/mypopcache/blob/main/Infrastructure.drawio)
 - Auth/Database(PostgreSQL)/Storage: Supabase
 - Backend/Server: ASP.NET Core
-  - Hosting: Google Cloud Compute Engine (Share VM for other projects)
+  - Hosting: GCP Compute Engine
 - Frontend/App: Vue3/Tailwind
-  - Hosting: Google Cloud Compute Engine (Share VM for other projects)
+  - Hosting: GCP Compute Engine
 
 ### Tasks Management
 Trello
