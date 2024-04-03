@@ -2,8 +2,7 @@
 
 Url/Shorthand: mypopcache
 
-### Objective
-Help people to register and keep track of any media that they have seen, are seeing or plan to see.
+An app to help you keep track of ongoing medias, like movies, series and books.
 
 ### Problem being solved
 Usually, people that follow pop culture, have dozens or even hundreds of media that they are following or already have seen, like movies, comics, books, series, mangas, animes, etc. And It is a hassle to keep track of everything by yourself.
