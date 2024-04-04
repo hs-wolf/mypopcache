@@ -1,0 +1,8 @@
+.dockerignore
+.env
+.env.example
+.eslintrc
+.nuxt
+.output
+Dockerfile
+node_modules

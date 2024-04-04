@@ -7,7 +7,7 @@
       <p class="font-semibold">
         Image Optimizer
       </p>
-      <NuxtImg
+      <!-- <NuxtImg
         src="/spaghetti.jpg"
         width="256"
         height="128"
@@ -15,7 +15,13 @@
         :ismap="true"
         decoding="auto"
         class="w-[50%] object-cover"
-      />
+      /> -->
+      <img
+        src="/spaghetti.jpg"
+        width="256"
+        height="128"
+        class="w-[50%] object-cover"
+      >
     </div>
     <div class="flex flex-col items-start gap-2">
       <p class="font-semibold">
