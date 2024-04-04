@@ -1,0 +1,4 @@
+body {
+  @apply bg-white text-primary font-sans antialiased transition-colors;
+  @apply dark:bg-primary dark:text-white;
+}
