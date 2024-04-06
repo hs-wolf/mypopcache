@@ -14,9 +14,9 @@
     "lint:fix": "eslint . --fix",
     "test": "vitest",
     "test:coverage": "vitest run --coverage",
-    "docker:build": "docker build -t us-central1-docker.pkg.dev/shared-419123/mypopcache/client .",
-    "docker:run": "docker run --rm -p 3000:3000 us-central1-docker.pkg.dev/shared-419123/mypopcache/client",
-    "docker:push": "docker push us-central1-docker.pkg.dev/shared-419123/mypopcache/client"
+    "docker:build": "docker build -t us-central1-docker.pkg.dev/shared-419123/mypopcache/mypopcache-client .",
+    "docker:run": "docker run --rm -p 3000:3000 us-central1-docker.pkg.dev/shared-419123/mypopcache/mypopcache-client",
+    "docker:push": "docker push us-central1-docker.pkg.dev/shared-419123/mypopcache/mypopcache-client"
   },
   "dependencies": {
     "@formkit/auto-animate": "^0.8.1",
