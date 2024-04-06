@@ -7,8 +7,8 @@
   "scripts": {
     "build": "dotnet publish -c Release -o published",
     "preview": "dotnet published/webapi.dll",
-    "docker:build": "docker build -t us-central1-docker.pkg.dev/shared-419123/mypopcache/webapi .",
-    "docker:run": "docker run --rm -p 5000:8080 us-central1-docker.pkg.dev/shared-419123/mypopcache/webapi",
-    "docker:push": "docker push us-central1-docker.pkg.dev/shared-419123/mypopcache/webapi"
+    "docker:build": "docker build -t us-central1-docker.pkg.dev/shared-419123/mypopcache/mypopcache-webapi .",
+    "docker:run": "docker run --rm -p 5000:8080 us-central1-docker.pkg.dev/shared-419123/mypopcache/mypopcache-webapi",
+    "docker:push": "docker push us-central1-docker.pkg.dev/shared-419123/mypopcache/mypopcache-webapi"
   }
 }
