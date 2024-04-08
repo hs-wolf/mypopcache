@@ -1,4 +1,7 @@
 body {
-  @apply bg-white text-primary font-sans antialiased transition-colors;
-  @apply dark:bg-primary dark:text-white;
+  @apply bg-primary text-secondary font-sans antialiased transition-colors;
+}
+
+.nuxt-icon svg {
+  margin-bottom: 0 !important;
 }

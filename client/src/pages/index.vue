@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <HelloWorld />
+  <div class="flex flex-col p-3">
+    Content
   </div>
 </template>
 
