@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col p-5">
+  <div class="fixed inset-0 flex flex-col">
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>
