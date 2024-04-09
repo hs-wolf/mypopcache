@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col p-3">
-    Home
+    Auth
   </div>
 </template>
 
