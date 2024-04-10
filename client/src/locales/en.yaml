@@ -1,6 +1,4 @@
 ---
-key: Value
-nested:
-  value: Nested
-english: English
-portuguese: Portuguese
+locales:
+  en: English
+  pt: Portuguese
