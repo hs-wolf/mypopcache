@@ -2,3 +2,12 @@
 locales:
   en: English
   pt: Portuguese
+components:
+  main-navbar:
+    pages:
+      index: Home
+      cache: Cache
+      profile: Profile
+      settings: Settings
+    locales:
+      language: Language
