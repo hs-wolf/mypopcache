@@ -1,8 +1,8 @@
 <template>
   <div class="flex flex-col gap-3">
-    <h1>Language</h1>
+    <h1>{{ $t('components.main-navbar.locales.language') }}</h1>
     <div v-auto-animate class="flex flex-col bg-primary-light rounded-sm">
-      <button id="toggle-collapsed" type="button" class="flex items-center gap-2 px-3 py-2 font-semibold" @click.prevent="toggleCollapsed()">
+      <button id="toggle-collapsed" type="button" class="flex items-center gap-2 px-3 py-2 text-secondary font-semibold" @click.prevent="toggleCollapsed()">
         <NuxtIcon :name="`flags/${$i18n.locale}`" class="text-xl" filled />
         <span>{{ $t(`locales.${$i18n.locale}`) }}</span>
       </button>

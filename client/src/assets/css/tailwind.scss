@@ -1,3 +1,37 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .btn {
+    @apply flex justify-center items-center gap-2 w-full px-3 py-2 shadow rounded-sm transition-all text-sm font-semibold whitespace-nowrap;
+    @apply lg:text-base active:scale-95 disabled:opacity-50 disabled:pointer-events-none;
+    .nuxt-icon {
+      @apply text-base lg:text-lg;
+    }
+  }
+
+  .btn-primary {
+    @apply bg-primary text-secondary active:bg-primary-2;
+  }
+
+  .btn-secondary {
+    @apply bg-secondary text-primary active:bg-secondary-2;
+  }
+
+  .btn-accent {
+    @apply bg-accent text-secondary active:bg-accent-1;
+  }
+
+  .btn-danger {
+    @apply bg-danger text-secondary active:bg-danger-1;
+  }
+
+  .btn-action {
+    @apply bg-action text-secondary active:bg-action-1;
+  }
+
+  .btn-warning {
+    @apply bg-warning text-secondary active:bg-warning-1;
+  }
+}

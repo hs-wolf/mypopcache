@@ -17,7 +17,23 @@ export default <Partial<Config>>{
         secondary: {
           DEFAULT: '#ededed',
           dark: '#a0a0a0',
-          light: '#000000'
+          light: '#ffffff'
+        },
+        action: {
+          dark: '#0C642B',
+          light: '#208940'
+        },
+        warning: {
+          dark: '#C09207',
+          light: '#987407'
+        },
+        danger: {
+          dark: '#B21010',
+          light: '#C74646'
+        },
+        accent: {
+          dark: '#3D34EF',
+          light: '#675FF7'
         }
       }
     }
