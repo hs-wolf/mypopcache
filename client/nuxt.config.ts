@@ -29,7 +29,8 @@ export default defineNuxtConfig({
     'nuxt-icons',
     '@vee-validate/nuxt',
     '@nuxtjs/color-mode',
-    '@nuxt/test-utils/module'
+    '@nuxt/test-utils/module',
+    '@nuxtjs/supabase'
   ],
   eslint: {
     lintOnStart: false
@@ -69,5 +70,8 @@ export default defineNuxtConfig({
   },
   colorMode: {
     classSuffix: ''
+  },
+  supabase: {
+
   }
 })
