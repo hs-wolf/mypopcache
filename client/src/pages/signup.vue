@@ -1,25 +1,24 @@
 <template>
   <div class="flex flex-col gap-3 p-3">
-    <h1>Login</h1>
-    <form v-if="!success" class="flex flex-col gap-2" @submit.prevent="handleLogin">
+    <h1>Sign up</h1>
+    <form v-if="!success" class="flex flex-col gap-2" @submit.prevent="handleRegister">
       <input v-model="email" :disabled="loading" class="text-primary-light" type="email" placeholder="Email">
       <input v-model="password" :disabled="loading" class="text-primary-light" type="password" placeholder="Password">
       <input
         type="submit"
-        :value="loading ? 'Loading' : 'Login'"
+        :value="loading ? 'Loading' : 'Sign up'"
         :disabled="loading"
       >
       <span v-if="errorMsg" class="text-sm text-danger-light">{{ errorMsg }}</span>
     </form>
     <p v-else>
-      Logado com sucesso!
+      Signed up successfully!
     </p>
   </div>
 </template>
 
 <script setup lang="ts">
 const client = useSupabaseClient()
-const localePath = useLocalePath()
 
 const email = ref('')
 const password = ref('')
@@ -27,12 +26,12 @@ const errorMsg = ref('')
 const success = ref(false)
 const loading = ref(false)
 
-const handleLogin = async () => {
+const handleRegister = async () => {
   try {
     loading.value = true
     success.value = false
     errorMsg.value = ''
-    const { error } = await client.auth.signInWithPassword({
+    const { error } = await client.auth.signUp({
       email: email.value,
       password: password.value
     })
@@ -40,7 +39,6 @@ const handleLogin = async () => {
       throw error
     }
     success.value = true
-    return navigateTo(localePath('/cache'))
   } catch (error) {
     errorMsg.value = (error as Error).message
   } finally {
