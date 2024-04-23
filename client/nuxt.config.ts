@@ -72,6 +72,11 @@ export default defineNuxtConfig({
     classSuffix: ''
   },
   supabase: {
-
+    redirectOptions: {
+      login: '/login',
+      callback: '/confirm',
+      cookieRedirect: true,
+      include: ['/profile', '/cache']
+    }
   }
 })

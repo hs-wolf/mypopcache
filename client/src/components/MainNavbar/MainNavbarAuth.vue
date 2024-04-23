@@ -1,10 +1,6 @@
 <template>
   <div class="flex flex-col gap-3">
-    <div class="flex flex-col gap-3">
-      <BaseButton label="Login" theme="accent" :action="login" />
-      <BaseButton label="Sign Up" theme="action" :action="signup" />
-    </div>
-    <div class="flex flex-col gap-2">
+    <div v-if="clientUser" class="flex flex-col gap-2">
       <div class="flex items-start justify-between gap-2">
         <button>
           <img
@@ -21,20 +17,34 @@
         </div>
       </div>
       <h1 class="text-lg text-secondary font-semibold">
-        Username
+        {{ clientUser?.email }}
       </h1>
+    </div>
+    <div v-else class="flex flex-col gap-3">
+      <BaseButton label="Login" theme="accent" :action="login" />
+      <BaseButton label="Sign Up" theme="action" :action="signup" />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-const login = () => {}
-
-const signup = () => {}
+const localePath = useLocalePath()
+const client = useSupabaseClient()
+const clientUser = useSupabaseUser()
 
 const share = () => {}
 
-const logout = () => {}
+const logout = () => {
+  client.auth.signOut()
+}
+
+const login = () => {
+  navigateTo(localePath('/login'))
+}
+
+const signup = () => {
+  navigateTo(localePath('/signup'))
+}
 </script>
 
 <style scoped>
