@@ -28,22 +28,29 @@
 </template>
 
 <script setup lang="ts">
+const emits = defineEmits<{(e: 'action'): void }>()
+
 const localePath = useLocalePath()
 const client = useSupabaseClient()
 const clientUser = useSupabaseUser()
 
-const share = () => {}
+const share = () => {
+  emits('action')
+}
 
 const logout = () => {
   client.auth.signOut()
+  emits('action')
 }
 
 const login = () => {
   navigateTo(localePath('/login'))
+  emits('action')
 }
 
 const signup = () => {
   navigateTo(localePath('/signup'))
+  emits('action')
 }
 </script>
 

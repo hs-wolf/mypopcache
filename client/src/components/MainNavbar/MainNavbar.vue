@@ -27,7 +27,7 @@
       <hr class="border-primary-light">
       <MainNavbarLocales />
       <hr class="border-primary-light">
-      <MainNavbarAuth />
+      <MainNavbarAuth @action="toggleCollapsed(true)" />
     </div>
   </nav>
 </template>
