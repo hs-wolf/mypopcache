@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-
+definePageMeta({ middleware: ['online'] })
 </script>
 
 <style scoped>

@@ -1,12 +1,12 @@
 <template>
   <div class="flex flex-col gap-3 p-3">
-    <h1>Login</h1>
-    <form v-if="!success" class="flex flex-col gap-2" @submit.prevent="handleLogin">
+    <h1>Sign In</h1>
+    <form v-if="!success" class="flex flex-col gap-2" @submit.prevent="handleSignin">
       <input v-model="email" :disabled="loading" class="text-primary-light" type="email" placeholder="Email">
       <input v-model="password" :disabled="loading" class="text-primary-light" type="password" placeholder="Password">
       <input
         type="submit"
-        :value="loading ? 'Loading' : 'Login'"
+        :value="loading ? 'Loading' : 'Sign in'"
         :disabled="loading"
       >
       <span v-if="errorMsg" class="text-sm text-danger-light">{{ errorMsg }}</span>
@@ -27,7 +27,7 @@ const errorMsg = ref('')
 const success = ref(false)
 const loading = ref(false)
 
-const handleLogin = async () => {
+const handleSignin = async () => {
   try {
     loading.value = true
     success.value = false
@@ -47,6 +47,8 @@ const handleLogin = async () => {
     loading.value = false
   }
 }
+
+definePageMeta({ middleware: ['offline'] })
 </script>
 
 <style scoped>

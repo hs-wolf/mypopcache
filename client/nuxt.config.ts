@@ -72,10 +72,6 @@ export default defineNuxtConfig({
     classSuffix: ''
   },
   supabase: {
-    redirectOptions: {
-      login: '/login',
-      callback: '/confirm',
-      exclude: ['/', '/signup']
-    }
+    redirect: false
   }
 })

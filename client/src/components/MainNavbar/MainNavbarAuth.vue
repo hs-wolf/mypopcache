@@ -21,7 +21,7 @@
       </h1>
     </div>
     <div v-else class="flex flex-col gap-3">
-      <BaseButton label="Login" theme="accent" :action="login" />
+      <BaseButton label="Sign In" theme="accent" :action="signin" />
       <BaseButton label="Sign Up" theme="action" :action="signup" />
     </div>
   </div>
@@ -43,8 +43,8 @@ const logout = () => {
   emits('action')
 }
 
-const login = () => {
-  navigateTo(localePath('/login'))
+const signin = () => {
+  navigateTo(localePath('/signin'))
   emits('action')
 }
 

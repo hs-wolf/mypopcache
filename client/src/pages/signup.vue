@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col gap-3 p-3">
     <h1>Sign up</h1>
-    <form v-if="!state.success" class="flex flex-col gap-2" @submit.prevent="handleRegister">
+    <form v-if="!state.success" class="flex flex-col gap-2" @submit.prevent="handleSignup">
       <input v-model="state.email" :disabled="state.loading" class="text-primary-light" type="email" placeholder="Email">
       <input v-model="state.password" :disabled="state.loading" class="text-primary-light" type="password" placeholder="Password">
       <input
@@ -30,7 +30,7 @@ const state = reactive({
   loading: false
 })
 
-const handleRegister = async () => {
+const handleSignup = async () => {
   state.success = false
   state.loading = true
   state.errorMsg = ''
@@ -44,6 +44,8 @@ const handleRegister = async () => {
   }
   state.success = true
 }
+
+definePageMeta({ middleware: ['offline'] })
 </script>
 
 <style scoped>
