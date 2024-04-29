@@ -12,7 +12,7 @@
           >
         </button>
         <div class="flex items-center gap-2">
-          <BaseButton icon="share" theme="accent" :action="share" />
+          <!-- <BaseButton icon="share" theme="accent" :action="share" /> -->
           <BaseButton icon="logout" theme="danger" :action="logout" />
         </div>
       </div>
@@ -34,9 +34,9 @@ const localePath = useLocalePath()
 const client = useSupabaseClient()
 const clientUser = useSupabaseUser()
 
-const share = () => {
-  emits('action')
-}
+// const share = () => {
+//   emits('action')
+// }
 
 const logout = () => {
   client.auth.signOut()

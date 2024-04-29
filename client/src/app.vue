@@ -1,11 +1,9 @@
 <template>
-  <div v-if="loaded" class="fixed inset-0 flex flex-col">
-    <NuxtLayout>
+  <div v-auto-animate class="fixed inset-0 flex flex-col">
+    <NuxtLayout v-if="loaded">
       <NuxtPage />
     </NuxtLayout>
-  </div>
-  <div v-else class="fixed inset-0 flex flex-col">
-    <BaseLoading />
+    <BaseLoading v-else />
   </div>
 </template>
 
