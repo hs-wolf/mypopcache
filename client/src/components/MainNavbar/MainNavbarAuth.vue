@@ -20,7 +20,7 @@
         {{ clientUser?.email }}
       </h1>
     </div>
-    <div v-else class="flex flex-col gap-3">
+    <div class="flex flex-col gap-3">
       <BaseButton label="Sign In" theme="accent" :action="signin" />
       <BaseButton label="Sign Up" theme="action" :action="signup" />
     </div>
