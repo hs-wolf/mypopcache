@@ -1,12 +1,12 @@
 <template>
   <div class="flex flex-col p-3">
     <h1>Home</h1>
-    <span>{{ usersStore.authUser }}</span>
+    <span>{{ user }}</span>
   </div>
 </template>
 
 <script setup lang="ts">
-const usersStore = useUsersStore()
+const user = useAuth.user()
 </script>
 
 <style scoped>

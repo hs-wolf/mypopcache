@@ -2,9 +2,12 @@
   <div class="flex flex-col gap-3">
     <h1>{{ $t('components.main-navbar.locales.language') }}</h1>
     <div v-auto-animate class="flex flex-col bg-primary-light rounded-sm">
-      <button id="toggle-collapsed" type="button" class="flex items-center gap-2 px-3 py-2 text-secondary font-semibold" @click.prevent="toggleCollapsed()">
-        <NuxtIcon :name="`flags/${$i18n.locale}`" class="text-xl" filled />
-        <span>{{ $t(`locales.${$i18n.locale}`) }}</span>
+      <button id="toggle-collapsed" type="button" class="flex justify-between items-center gap-2 px-3 py-2 text-secondary font-semibold" @click.prevent="toggleCollapsed()">
+        <div class="flex items-center gap-2">
+          <NuxtIcon :name="`flags/${$i18n.locale}`" class="text-xl" filled />
+          <span>{{ $t(`locales.${$i18n.locale}`) }}</span>
+        </div>
+        <NuxtIcon name="chevron-down" class="text-xl transition-transform" :class="{ 'rotate-180': !collapsed }" />
       </button>
       <div v-if="!collapsed" class="flex flex-col gap-2 pb-2">
         <button

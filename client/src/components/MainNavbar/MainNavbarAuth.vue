@@ -12,7 +12,7 @@
           >
         </button>
         <div class="flex items-center gap-2">
-          <BaseButton icon="share" theme="accent" :action="share" />
+          <!-- <BaseButton icon="share" theme="accent" :action="share" /> -->
           <BaseButton icon="logout" theme="danger" :action="logout" />
         </div>
       </div>
@@ -20,8 +20,8 @@
         {{ clientUser?.email }}
       </h1>
     </div>
-    <div v-else class="flex flex-col gap-3">
-      <BaseButton label="Login" theme="accent" :action="login" />
+    <div class="flex flex-col gap-3">
+      <BaseButton label="Sign In" theme="accent" :action="signin" />
       <BaseButton label="Sign Up" theme="action" :action="signup" />
     </div>
   </div>
@@ -34,17 +34,17 @@ const localePath = useLocalePath()
 const client = useSupabaseClient()
 const clientUser = useSupabaseUser()
 
-const share = () => {
-  emits('action')
-}
+// const share = () => {
+//   emits('action')
+// }
 
 const logout = () => {
   client.auth.signOut()
   emits('action')
 }
 
-const login = () => {
-  navigateTo(localePath('/login'))
+const signin = () => {
+  navigateTo(localePath('/signin'))
   emits('action')
 }
 
