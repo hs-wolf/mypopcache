@@ -2,6 +2,16 @@
 locales:
   en: English
   pt: Portuguese
+item-types:
+  NONE: None
+  SERIE: Serie
+  MOVIE: Movie
+  COMIC: Comic
+  ANIME: Anime
+  BOOK: Book
+  MANGA: Manga
+  MANHUA: Manhua
+  MANHWA: Manhwa
 components:
   main-navbar:
     pages:
