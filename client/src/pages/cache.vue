@@ -49,6 +49,21 @@ const state = reactive<{
       episode: '',
       volume: '',
       chapter: '',
+      completed: true,
+      link: 'https://google.com',
+      created_at: new Date(),
+      updated_at: new Date()
+    },
+    {
+      id: '1',
+      profile_id: '0',
+      type: ItemType.ANIME,
+      label: 'Jujutsu Kaizen',
+      season: '3',
+      episode: '5',
+      volume: '1',
+      chapter: '23',
+      completed: false,
       link: 'https://google.com',
       created_at: new Date(),
       updated_at: new Date()

@@ -19,6 +19,7 @@ export interface Item {
   episode?: string,
   volume?: string,
   chapter?: string,
+  completed?: boolean,
   link?: string,
   updated_at: Date,
   created_at: Date,

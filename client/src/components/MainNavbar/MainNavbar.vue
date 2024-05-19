@@ -2,7 +2,7 @@
   <nav
     ref="rootRef"
     v-auto-animate
-    class="absolute top-0 left-0 flex flex-col w-full max-h-full md:h-full bg-primary border-b md:border-r border-primary-light overflow-auto"
+    class="z-10 absolute top-0 left-0 flex flex-col w-full max-h-full md:h-full bg-primary border-b md:border-r border-primary-light overflow-auto"
     :class="collapsed ? 'md:w-auto' : 'md:w-64'"
   >
     <div
@@ -12,7 +12,7 @@
         <NuxtIcon name="menu-hamburguer" class="text-2xl transition-transform" :class="{ 'rotate-90': !collapsed }" />
       </button>
     </div>
-    <div v-if="!collapsed" class="flex flex-col gap-3 p-3 text-secondary-dark">
+    <div v-if="!collapsed" class="flex-1 flex flex-col gap-3 p-3 text-secondary-dark">
       <div class="flex flex-col gap-3 text-lg">
         <NuxtLink
           v-for="page in pages"
