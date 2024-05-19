@@ -12,7 +12,7 @@
         <NuxtIcon name="menu-hamburguer" class="text-2xl transition-transform" :class="{ 'rotate-90': !collapsed }" />
       </button>
     </div>
-    <div v-if="!collapsed" class="flex flex-col gap-3 p-3 text-secondary-dark">
+    <div v-if="!collapsed" class="flex-1 flex flex-col gap-3 p-3 text-secondary-dark">
       <div class="flex flex-col gap-3 text-lg">
         <NuxtLink
           v-for="page in pages"
