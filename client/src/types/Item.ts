@@ -1,3 +1,9 @@
+export enum ItemFilters {
+  ALL = 'ALL',
+  ONGOING = 'ONGOING',
+  COMPLETED = 'COMPLETED',
+}
+
 export enum ItemType {
   NONE = 'NONE',
   SERIE = 'SERIE',
@@ -25,4 +31,4 @@ export interface Item {
   created_at: Date,
 }
 
-export type EditableItem = Partial<Omit<Item, 'id' | 'profile_id' | 'updated_at' | 'created_at'>>
+export type EditableItem = Omit<Item, 'id' | 'profile_id' | 'updated_at' | 'created_at'>

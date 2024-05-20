@@ -2,7 +2,12 @@
 locales:
   en: English
   pt: Portuguese
+item-filters:
+  ALL: All
+  ONGOING: Ongoing
+  COMPLETED: Completed
 item-types:
+  ALL: All
   NONE: None
   SERIE: Serie
   MOVIE: Movie

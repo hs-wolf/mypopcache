@@ -1,5 +1,5 @@
 <template>
-  <button type="button" :class="finalTheme" class="flex justify-center items-center gap-2 px-3 py-2 shadow rounded-sm transition-all active:scale-[.99] disabled:opacity-50" @click.prevent="actionHandler">
+  <button type="button" :class="finalTheme" class="flex justify-center items-center gap-2 px-3 py-2 shadow rounded-sm disabled:opacity-50" @click.prevent="actionHandler">
     <span v-if="label" class="text-sm md:text-base font-semibold whitespace-nowrap">{{ label }}</span>
     <NuxtIcon v-if="icon" :name="icon" filled class="text-xl md:text-2xl" />
   </button>
