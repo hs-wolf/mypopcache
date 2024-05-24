@@ -12,13 +12,30 @@
         {{ clientUser?.email }}
       </h1>
       <div class="flex items-center gap-2 self-end lg:self-start mt-auto">
-        <!-- <BaseButton icon="share" theme="accent" :action="share" /> -->
-        <BaseButton label="Logout" icon="logout" theme="danger" :action="logout" />
+        <!-- <BaseButton
+          icon="share"
+          theme="accent"
+          @action="share"
+        /> -->
+        <BaseButton
+          label="Logout"
+          icon="logout"
+          theme="danger"
+          @action="logout"
+        />
       </div>
     </div>
     <div v-else class="flex flex-col gap-3">
-      <BaseButton label="Sign In" theme="accent" :action="signin" />
-      <BaseButton label="Sign Up" theme="action" :action="signup" />
+      <BaseButton
+        label="Sign In"
+        theme="accent"
+        @action="signin"
+      />
+      <BaseButton
+        label="Sign Up"
+        theme="action"
+        @action="signup"
+      />
     </div>
   </div>
 </template>

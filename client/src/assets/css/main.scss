@@ -1,7 +1,9 @@
 body {
-  @apply bg-primary text-base lg:text-lg text-secondary font-sans antialiased transition-colors;
+  @apply bg-primary text-sm lg:text-base text-secondary font-sans antialiased transition-colors;
 }
-
+.text-icon { 
+  @apply text-xl lg:text-2xl;
+}
 .nuxt-icon svg {
   margin-bottom: 0 !important;
 }

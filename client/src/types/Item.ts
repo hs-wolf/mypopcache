@@ -18,7 +18,7 @@ export enum ItemType {
 
 export interface Item {
   id: string,
-  profile_id: string,
+  user_id: string,
   type: ItemType,
   label: string,
   season?: string,
@@ -31,4 +31,4 @@ export interface Item {
   created_at: Date,
 }
 
-export type EditableItem = Omit<Item, 'id' | 'profile_id' | 'updated_at' | 'created_at'>
+export type EditableItem = Omit<Item, 'id' | 'user_id' | 'updated_at' | 'created_at'>

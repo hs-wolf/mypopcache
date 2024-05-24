@@ -6,6 +6,7 @@ export default defineNuxtPlugin(({ hook }) => {
 
   const pinia = usePinia()
   const alertsStore = useAlertsStore(pinia)
+  const itemsStore = useItemsStore(pinia)
 
   const supabaseClient = useSupabaseClient()
   const supabaseAuth = supabaseClient.auth
@@ -17,6 +18,7 @@ export default defineNuxtPlugin(({ hook }) => {
         const user = session?.user
         if (user) {
           useAuth.user().value = user
+          itemsStore.getItems()
           // If the current route has a redirect, go for It.
           if (route.query.redirect) {
             navigateTo(localePath(route.query.redirect.toString()), { replace: true })
@@ -28,6 +30,7 @@ export default defineNuxtPlugin(({ hook }) => {
           }
         } else {
           useAuth.user().value = null
+          itemsStore.reset()
           // If the current route has a redirect, go for It.
           if (route.query.redirect) {
             navigateTo(localePath(route.query.redirect.toString()), { replace: true })

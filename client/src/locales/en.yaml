@@ -17,6 +17,11 @@ item-types:
   MANGA: Manga
   MANHUA: Manhua
   MANHWA: Manhwa
+general:
+  discard: Discard
+  create: Create
+  update: Update
+  delete: Delete
 components:
   main-navbar:
     pages:
@@ -26,3 +31,24 @@ components:
       settings: Settings
     locales:
       language: Language
+  cache:
+    new-item-modal:
+      title: New item
+      type: Type
+      label: Label
+      season: Season
+      episode: Episode
+      volume: Volume
+      chapter: Chapter
+      link: Link
+      completed: Completed
+    edit-item-modal:
+      title: Update item
+      type: Type
+      label: Label
+      season: Season
+      episode: Episode
+      volume: Volume
+      chapter: Chapter
+      link: Link
+      completed: Completed

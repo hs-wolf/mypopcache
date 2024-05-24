@@ -1,36 +1,36 @@
 <template>
-  <div v-auto-animate class="flex flex-col w-full max-w-[1024px] md:mx-auto gap-6 md:gap-9 p-3 md:p-9 overflow-auto">
+  <div v-auto-animate class="flex flex-col w-full max-w-[1024px] lg:mx-auto gap-6 lg:gap-9 p-3 lg:p-9 overflow-auto">
     <h1 class="text-xl lg:text-2xl">
       {{ user.email }}'s <span class="font-semibold">Cache</span>
     </h1>
     <div class="flex flex-col lg:flex-row gap-3">
-      <div class="flex items-center gap-2 px-2 w-full md:px-3 py-2 bg-secondary rounded-sm">
-        <NuxtIcon name="search" class="text-primary-light text-xl md:text-2xl" />
+      <div class="flex items-center gap-2 px-2 w-full lg:px-3 py-2 bg-secondary rounded-sm">
+        <NuxtIcon name="search" class="text-primary-light text-xl lg:text-2xl" />
         <input
           id="search"
           ref="searchInputRef"
           v-model="state.query"
           type="text"
           name="search"
-          class="flex-1 bg-transparent outline-none max-h-5 md:max-h-6 text-primary leading-none"
+          class="flex-1 bg-transparent outline-none max-h-5 lg:max-h-6 text-primary leading-none"
         >
         <button
           v-if="state.query"
         >
           <NuxtIcon
             name="x-close"
-            class="text-primary-light text-xl md:text-2xl"
+            class="text-primary-light text-xl lg:text-2xl"
             @click.prevent="state.query = ''"
           />
         </button>
       </div>
       <div class="flex gap-3">
-        <select id="filterMode" v-model="state.filterMode" name="filterMode" class="w-full lg:w-auto max-h-9 md:max-h-10 px-2 md:px-3 py-2 bg-secondary rounded-sm text-primary leading-none outline-none">
+        <select id="filterMode" v-model="state.filterMode" name="filterMode" class="w-full lg:w-auto max-h-9 lg:max-h-10 px-2 lg:px-3 py-2 bg-secondary rounded-sm text-primary leading-none outline-none">
           <option v-for="filter in Object.values(ItemFilters)" :key="filter" :value="filter">
             {{ $t(`item-filters.${filter}`) }}
           </option>
         </select>
-        <select id="filterType" v-model="state.filterType" name="filterType" class="w-full lg:w-auto max-h-9 md:max-h-10 px-2 md:px-3 py-2 bg-secondary rounded-sm text-primary leading-none outline-none">
+        <select id="filterType" v-model="state.filterType" name="filterType" class="w-full lg:w-auto max-h-9 lg:max-h-10 px-2 lg:px-3 py-2 bg-secondary rounded-sm text-primary leading-none outline-none">
           <option v-for="filter in ['ALL', ...Object.values(ItemType)]" :key="filter" :value="filter">
             {{ $t(`item-types.${filter}`) }}
           </option>
@@ -38,42 +38,54 @@
       </div>
       <div class="hidden lg:flex gap-1">
         <BaseButton
-          :action="() => toggleDisplayMode('list')"
           icon="list"
           :theme="state.displayMode === 'list' ? 'secondary': 'primary'"
+          @action="toggleDisplayMode('list')"
         />
         <BaseButton
-          :action="() => toggleDisplayMode('grid')"
           icon="grid"
           :theme="state.displayMode === 'grid' ? 'secondary': 'primary'"
+          @action="toggleDisplayMode('grid')"
         />
       </div>
+      <BaseButton
+        label="New Item"
+        icon="add"
+        theme="accent"
+        @action="toggleNewItemModal(true)"
+      />
     </div>
     <span v-if="state.query" class="text-sm">{{ queryLabel }}</span>
     <div class="gap-3" :class="state.displayMode === 'list' ? 'flex flex-col' : 'grid grid-cols-2'">
-      <CacheItem
+      <CacheListItem
         v-for="item in filteredItems"
         :key="item.id"
         :item="item"
-        @edit="setEditingItem(item.id)"
+        @edit="setEditingItemIndex(item.id)"
       />
     </div>
-    <CacheItemEdit
+    <CacheNewItemModal
+      v-if="state.showNewItemModal"
+      @close="toggleNewItemModal(false)"
+    />
+    <CacheEditItemModal
       v-if="state.editingItemIndex >= 0"
-      :item="state.items[state.editingItemIndex]"
-      @close="setEditingItem('')"
-      @save="saveItem"
-      @delete="deleteItem"
+      :item="itemsStoreState.items[state.editingItemIndex]"
+      @close="setEditingItemIndex('')"
+      @save="saveEditingItem"
+      @delete="deleteEditingItem"
     />
   </div>
 </template>
 
 <script setup lang="ts">
-import { type Item, ItemType, type EditableItem, ItemFilters } from '~/types'
+import { ItemType, type EditableItem, ItemFilters } from '~/types'
 
 definePageMeta({ middleware: ['online'] })
 
 const user = useAuth.user()
+const itemsStore = useItemsStore()
+const { state: itemsStoreState } = storeToRefs(itemsStore)
 
 const searchInputRef = ref<HTMLInputElement | null>(null)
 
@@ -83,51 +95,14 @@ const state = reactive<{
   filterMode: ItemFilters,
   filterType: ItemType | 'ALL',
   editingItemIndex: number,
-  items: Item[],
+  showNewItemModal: boolean
 }>({
   query: '',
   displayMode: 'list',
   filterMode: ItemFilters.ALL,
   filterType: 'ALL',
   editingItemIndex: -1,
-  items: [
-    {
-      id: '0',
-      profile_id: '0',
-      type: ItemType.SERIE,
-      label: 'Arcane',
-      season: '2',
-      episode: '7',
-      completed: true,
-      link: 'https://google.com',
-      created_at: new Date(),
-      updated_at: new Date()
-    },
-    {
-      id: '1',
-      profile_id: '0',
-      type: ItemType.ANIME,
-      label: 'Jujutsu Kaizen',
-      season: '2',
-      episode: '2',
-      completed: false,
-      link: 'https://google.com',
-      created_at: new Date(),
-      updated_at: new Date()
-    },
-    {
-      id: '2',
-      profile_id: '0',
-      type: ItemType.MANGA,
-      label: 'Monster',
-      volume: '1',
-      chapter: '6',
-      completed: false,
-      link: 'https://google.com',
-      created_at: new Date(),
-      updated_at: new Date()
-    }
-  ]
+  showNewItemModal: false
 })
 
 const queryLabel = computed(() => {
@@ -136,7 +111,7 @@ const queryLabel = computed(() => {
 
 // Mocked filtering, the final version will query directly from the DB.
 const filteredItems = computed(() => {
-  let list = state.items
+  let list = itemsStoreState.value.items
   if (state.filterMode === ItemFilters.ONGOING) {
     list = list.filter(item => !item.completed)
   }
@@ -156,12 +131,16 @@ const toggleDisplayMode = (value: 'list' | 'grid') => {
   state.displayMode = value
 }
 
-const setEditingItem = (id: string) => {
+const toggleNewItemModal = (value?: boolean) => {
+  state.showNewItemModal = value ?? !state.showNewItemModal
+}
+
+const setEditingItemIndex = (id: string) => {
   if (!id) {
     state.editingItemIndex = -1
     return
   }
-  const itemIndexToEdit = state.items.findIndex(item => item.id === id)
+  const itemIndexToEdit = itemsStoreState.value.items.findIndex(item => item.id === id)
   if (itemIndexToEdit < 0) {
     state.editingItemIndex = -1
     return
@@ -169,14 +148,14 @@ const setEditingItem = (id: string) => {
   state.editingItemIndex = itemIndexToEdit
 }
 
-const saveItem = (editableItem: EditableItem) => {
+const saveEditingItem = (editableItem: EditableItem) => {
   const indexToUpdate = state.editingItemIndex
-  setEditingItem('')
+  setEditingItemIndex('')
   if (!editableItem.type || !editableItem.label) {
     return
   }
-  state.items[indexToUpdate] = {
-    ...state.items[indexToUpdate],
+  itemsStoreState.value.items[indexToUpdate] = {
+    ...itemsStoreState.value.items[indexToUpdate],
     type: editableItem.type,
     label: editableItem.label,
     season: editableItem.season,
@@ -188,10 +167,10 @@ const saveItem = (editableItem: EditableItem) => {
   }
 }
 
-const deleteItem = () => {
+const deleteEditingItem = () => {
   const indexToDelete = state.editingItemIndex
-  setEditingItem('')
-  state.items.splice(indexToDelete, 1)
+  setEditingItemIndex('')
+  itemsStoreState.value.items.splice(indexToDelete, 1)
 }
 
 onMounted(() => {

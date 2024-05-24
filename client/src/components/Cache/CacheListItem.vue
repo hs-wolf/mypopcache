@@ -2,8 +2,8 @@
   <div v-auto-animate class="flex items-start gap-1.5">
     <button class="flex flex-col gap-1 w-full px-3 py-2 bg-primary-light rounded-sm" @click.prevent="emits('edit')">
       <div class="flex justify-between items-center gap-2">
-        <span class="text-sm md:text-base">{{ item.label }}</span>
-        <NuxtIcon name="edit" class="text-xl md:text-2xl text-secondary-dark" />
+        <span class="text-sm lg:text-base">{{ item.label }}</span>
+        <NuxtIcon name="edit" class="text-xl lg:text-2xl text-secondary-dark" />
       </div>
       <span v-if="item.completed" class="text-start text-xs lg:text-sm text-action-light">
         Completed
@@ -12,7 +12,12 @@
         {{ concatenatedSubtitle }}
       </span>
     </button>
-    <BaseButton v-if="item.link" :action="openLink" icon="link" theme="primary" />
+    <BaseButton
+      v-if="item.link"
+      icon="link"
+      theme="primary"
+      @action="openLink"
+    />
   </div>
 </template>
 

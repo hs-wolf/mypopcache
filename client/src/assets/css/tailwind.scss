@@ -4,9 +4,9 @@
 
 @layer components {
   .modal {
-   @apply z-20 fixed inset-0 flex flex-col justify-center items-center p-3 md:p-9 bg-primary/50; 
+   @apply z-20 fixed inset-0 flex flex-col justify-center items-center p-3 lg:p-5 bg-primary/50; 
   }
   .custom-input {
-    @apply w-full max-h-9 md:max-h-10 px-2 md:px-3 py-2 bg-secondary rounded-sm text-primary leading-none outline-none;
+    @apply w-full max-h-9 lg:max-h-10 px-2 lg:px-3 py-2 bg-secondary rounded-sm text-primary leading-none outline-none;
   } 
 }

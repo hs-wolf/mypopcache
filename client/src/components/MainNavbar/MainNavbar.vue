@@ -2,8 +2,8 @@
   <nav
     ref="rootRef"
     v-auto-animate
-    class="z-10 absolute top-0 left-0 flex flex-col w-full max-h-full md:h-full bg-primary border-b md:border-r border-primary-light overflow-auto"
-    :class="collapsed ? 'md:w-auto' : 'md:w-64'"
+    class="z-10 absolute top-0 left-0 flex flex-col w-full max-h-full lg:h-full bg-primary border-b lg:border-r border-primary-light overflow-auto"
+    :class="collapsed ? 'lg:w-auto' : 'lg:w-64'"
   >
     <div
       class="flex p-3"

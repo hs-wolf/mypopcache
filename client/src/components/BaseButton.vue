@@ -1,12 +1,25 @@
 <template>
-  <button type="button" :class="finalTheme" class="flex justify-center items-center gap-2 px-3 py-2 shadow rounded-sm disabled:opacity-50" @click.prevent="actionHandler">
-    <span v-if="label" class="text-sm md:text-base font-semibold whitespace-nowrap">{{ label }}</span>
-    <NuxtIcon v-if="icon" :name="icon" filled class="text-xl md:text-2xl" />
+  <button
+    type="button"
+    :class="finalTheme"
+    :disabled="disabled"
+    class="flex justify-center items-center gap-1 lg:gap-2 px-3 py-2 rounded-sm disabled:opacity-50"
+    @click.prevent="emits('action')"
+  >
+    <NuxtIcon v-if="icon" :name="icon" filled class="text-icon" />
+    <span v-if="label" class="font-semibold whitespace-nowrap">{{ label }}</span>
   </button>
 </template>
 
 <script setup lang="ts">
-const props = defineProps<{ action: Function, label?: string, icon?: string, theme?: 'primary' | 'secondary' | 'accent' | 'action' | 'warning' | 'danger' }>()
+const props = defineProps<{
+    label?: string,
+    icon?: string,
+    theme?: 'primary' | 'secondary' | 'accent' | 'action' | 'warning' | 'danger',
+    disabled?: boolean
+  }>()
+
+const emits = defineEmits<{(e: 'action'): void}>()
 
 const finalTheme = computed(() => {
   switch (props.theme) {
@@ -21,15 +34,11 @@ const finalTheme = computed(() => {
     case 'warning':
       return 'bg-warning-light text-secondary active:bg-warning-dark'
     case 'danger':
-      return 'bg-danger-light text-secondary active:bg-danger-dark'
+      return 'text-danger-light active:text-danger-dark'
     default:
       return 'bg-primary-light text-secondary active:bg-primary-dark'
   }
 })
-
-const actionHandler = () => {
-  props.action()
-}
 </script>
 
 <style scoped>
