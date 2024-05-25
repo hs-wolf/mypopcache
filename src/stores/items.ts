@@ -1,7 +1,9 @@
 import type { EditableItem, Item } from '~/types'
-import { ITEMS_STORE_ID } from '~/utils/constants'
+import { ITEMS_STORE_ID, clientAuthHeader } from '~/utils'
 
 export const useItemsStore = defineStore(ITEMS_STORE_ID, () => {
+  const alertsStore = useAlertsStore()
+
   const state = reactive<{
     items: Item[],
     gettingItems: boolean,
@@ -20,16 +22,25 @@ export const useItemsStore = defineStore(ITEMS_STORE_ID, () => {
     state.items = []
   }
 
-  const getItems = async () => {
+  const getItems = async (userId: string, myItems?: true) => {
     try {
       if (state.gettingItems) {
         return
       }
       state.gettingItems = true
-      const items: Item[] = await $fetch('/api/items', { method: 'GET', headers: useRequestHeaders(['cookie']) })
-      state.items = items
+      const { data, error } = await useNuxtApp().$supabaseClient
+        .from('items')
+        .select()
+        .eq('user_id', userId)
+      if (error) {
+        throw error
+      }
+      if (myItems) {
+        state.items = data as any || []
+      }
+      return data || []
     } catch (error) {
-      useAlertsStore().handlerError(error)
+      alertsStore.handlerError(error)
     } finally {
       state.gettingItems = false
     }
@@ -41,11 +52,19 @@ export const useItemsStore = defineStore(ITEMS_STORE_ID, () => {
         return
       }
       state.creatingItem = true
-      const createdItem: Item = await $fetch('/api/items', { method: 'POST', body: item, headers: useRequestHeaders(['cookie']) })
-      state.items.push(createdItem)
-      return createdItem
+      const { data, error } = await useNuxtApp().$supabaseClient
+        .from('items')
+        .insert({ ...item, user_id: (await useNuxtApp().$supabaseAuth.getUser()).data.user?.id ?? '' })
+        .select()
+      if (error) {
+        throw error
+      }
+      if (data) {
+        state.items.push(...data as any)
+      }
+      return data
     } catch (error) {
-      useAlertsStore().handlerError(error)
+      alertsStore.handlerError(error)
     } finally {
       state.creatingItem = false
     }
@@ -57,7 +76,11 @@ export const useItemsStore = defineStore(ITEMS_STORE_ID, () => {
         return
       }
       state.updatingItem = true
-      const updatedItem: Item = await $fetch(`/api/items/${id}`, { method: 'PUT', body: newItem, headers: useRequestHeaders(['cookie']) })
+      const updatedItem: Item = await $fetch(`/api/items/${id}`, {
+        method: 'PUT',
+        body: newItem,
+        headers: { ...clientAuthHeader() }
+      })
       const indexToUpdate = state.items.findIndex(item => item.id === id)
       if (indexToUpdate < 0) {
         return
@@ -65,7 +88,7 @@ export const useItemsStore = defineStore(ITEMS_STORE_ID, () => {
       state.items[indexToUpdate] = updatedItem
       return state.items[indexToUpdate]
     } catch (error) {
-      useAlertsStore().handlerError(error)
+      alertsStore.handlerError(error)
     } finally {
       state.updatingItem = false
     }
@@ -77,7 +100,10 @@ export const useItemsStore = defineStore(ITEMS_STORE_ID, () => {
         return
       }
       state.deletingItem = true
-      await $fetch(`/api/items/${id}`, { method: 'DELETE', headers: useRequestHeaders(['cookie']) })
+      await $fetch(`/api/items/${id}`, {
+        method: 'DELETE',
+        headers: { ...clientAuthHeader() }
+      })
       const indexToDelete = state.items.findIndex(item => item.id === id)
       if (indexToDelete < 0) {
         return
@@ -85,7 +111,7 @@ export const useItemsStore = defineStore(ITEMS_STORE_ID, () => {
       state.items.splice(indexToDelete, 1)
       return id
     } catch (error) {
-      useAlertsStore().handlerError(error)
+      alertsStore.handlerError(error)
     } finally {
       state.deletingItem = false
     }

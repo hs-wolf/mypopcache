@@ -4,7 +4,7 @@ export const useAlertsStore = defineStore(ALERTS_STORE_ID, () => {
   function handlerError (error: unknown) {
     if (error instanceof Error) {
       // eslint-disable-next-line no-console
-      console.log(error.message)
+      console.log(error)
     }
   }
   return { handlerError }

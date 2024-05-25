@@ -1,8 +1,11 @@
 <template>
   <div v-auto-animate class="flex flex-col w-full max-w-[1024px] lg:mx-auto gap-6 lg:gap-9 p-3 lg:p-9 overflow-auto">
-    <h1 class="text-xl lg:text-2xl">
-      {{ user.email }}'s <span class="font-semibold">Cache</span>
-    </h1>
+    <div class="flex flex-col gap-3 lg:gap-5">
+      <h1 class="text-xl lg:text-2xl">
+        {{ user.email }}'s <span class="font-semibold">Cache</span>
+      </h1>
+      <p>{{ itemsStoreState.items.length }} items</p>
+    </div>
     <div class="flex flex-col lg:flex-row gap-3">
       <div class="flex items-center gap-2 px-2 w-full lg:px-3 py-2 bg-secondary rounded-sm">
         <NuxtIcon name="search" class="text-primary-light text-xl lg:text-2xl" />

@@ -1,3 +1,4 @@
+import type { Database } from '~/types'
 import type { MiddlewareKey } from '~~/.nuxt/types/middleware'
 
 export default defineNuxtPlugin(({ hook }) => {
@@ -8,7 +9,7 @@ export default defineNuxtPlugin(({ hook }) => {
   const alertsStore = useAlertsStore(pinia)
   const itemsStore = useItemsStore(pinia)
 
-  const supabaseClient = useSupabaseClient()
+  const supabaseClient = useSupabaseClient<Database>()
   const supabaseAuth = supabaseClient.auth
 
   hook('app:suspense:resolve', () => {
@@ -18,7 +19,7 @@ export default defineNuxtPlugin(({ hook }) => {
         const user = session?.user
         if (user) {
           useAuth.user().value = user
-          itemsStore.getItems()
+          itemsStore.getItems(user.id, true)
           // If the current route has a redirect, go for It.
           if (route.query.redirect) {
             navigateTo(localePath(route.query.redirect.toString()), { replace: true })
@@ -51,7 +52,8 @@ export default defineNuxtPlugin(({ hook }) => {
 
   return {
     provide: {
-      supabaseAuth
+      supabaseAuth,
+      supabaseClient
     }
   }
 })
