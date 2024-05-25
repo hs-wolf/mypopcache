@@ -1,5 +1,0 @@
-.dockerignore
-Dockerfile
-bin/
-obj/
-node_modules/

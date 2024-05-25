@@ -1,0 +1,54 @@
+---
+locales:
+  en: Inglês
+  pt: Português
+item-filters:
+  ALL: Todos
+  ONGOING: Em andamento
+  COMPLETED: Completado
+item-types:
+  ALL: Todos
+  NONE: Nenhum
+  SERIE: Série
+  MOVIE: Filme
+  COMIC: Quadrinho
+  ANIME: Anime
+  BOOK: Livro
+  MANGA: Mangá
+  MANHUA: Manhua
+  MANHWA: Manhwa
+general:
+  discard: Descartar
+  create: Criar
+  update: Atualizar
+  delete: Deletar
+components:
+  main-navbar:
+    pages:
+      index: Início
+      cache: Cache
+      profile: Perfil
+      settings: Configurações
+    locales:
+      language: Língua
+  cache:
+    new-item-modal:
+      title: Novo item
+      type: Tipo
+      label: Nome
+      season: Temporada
+      episode: Episódio
+      volume: Volume
+      chapter: Capítulo
+      link: Link
+      completed: Completo
+    edit-item-modal:
+      title: Atualizar item
+      type: Tipo
+      label: Nome
+      season: Temporada
+      episode: Episódio
+      volume: Volume
+      chapter: Capítulo
+      link: Link
+      completed: Completo
